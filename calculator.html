@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculator</title>
+         <link rel="stylesheet" href="style.css">
+                 <!--Verbindt de HTML-pagina met de CSS-stylesheet die de opmaak van de rekenmachine zal bepalen-->
+        </head>   <body> 
+<div class="calculator">
+    <!--Container voor de gehele rekenmachine-->
+                <input type="text"
+                id="display" class="display"
+                disabled>
+                <!--Het invoerveld waar de gebruiker de berekeningen en resultaten ziet-->
+                <div class="buttons">
+                    <!--Container voor alle knoppen van de rekenmachine-->
+                    <button class="button button1">(</button>
+                    <button class="button button1">)</button>
+                    <button class="button button1">%</button>
+                    <button class="button button1">C</button>
+                    <button class="button">7</button>
+                    <button class="button">8</button>
+                    <button class="button">9</button>
+                    <button class="button button1">/</button>
+                    <button class="button">4</button>
+                    <button class="button">5</button>
+                    <button class="button">6</button>
+                    <button class="button button1">*</button>
+                    <button class="button">1</button>
+                    <button class="button">2</button>
+                    <button class="button">3</button>
+                    <button class="button button1">-</button>
+                    <button class="button">0</button>
+                    <button class="button">.</button>
+                    <button class="button button2">=</button>
+                    <button class="button button1">+</button>
+    
+                    <!--De knoppen van de rekenmachine (cijfers en bewerkingen)-->
+                </div> 
+</div>
+                <div>   
+                     <button id="theme-toggle">Dark</button>
+                </div>
+        <script src="script.js"></script> 
+                <!--Verwijst naar het JavaScript-bestand dat de logica van de rekenmachine beheren-->
+                <script>
+                    const display = document.getElementById('display');
+//Vind het display(waar de getalen en uitkomst komen)
+const buttons = document.querySelectorAll('.button');
+//Vind alle knoppen met de naam 'button'
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        //Voor elke knop, luister naar een clik
+        const value = button.textContent;
+        //Haal de tekst van de knop op
+    if (value === 'C') {
+display.value = '';
+//Als de knop 'C' is, maak het display leeg
+} else if (value === '=') {
+    //Als de knop '=' is, reken uit wat er op het display staat
+try {
+    display.value = eval(display.value);
+    //Reken uit en laat het op het dispaly zien 
+            } catch (e) {
+                display.value = "Error";
+            }} 
+            //Als er een fout is,laat "Error" zien
+            else {
+            display.value += value;
+            //Als het geen 'C' of '=' is, voeg de tekst van de knop toe aan het display
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggleButton = document.getElementById('theme-toggle');
+    
+        themeToggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            document.body.classList.toggle('dark-theme');
+        });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        const changeLetterButton = document.getElementById('theme-toggle');
+    
+        changeLetterButton.addEventListener('click', () => {
+
+            const currentText = changeLetterButton.textContent;
+    
+
+            if (currentText === 'Dark') {
+                changeLetterButton.textContent = 'Light';
+            } else {
+                changeLetterButton.textContent = 'Dark';
+            }
+        });
+    
+    });
+                 </script>
+               </body>
+               </html>
+
